@@ -1,6 +1,6 @@
 const express = require('express');
 var router = express.Router()
-const ArticlesModel = require('../models/articles.js')
+const UsersModel = require('../models/users.js')
 
 // Displays the login page
 router.get("/", async function(req, res)
@@ -18,10 +18,14 @@ router.get("/", async function(req, res)
 router.post("/attemptlogin", async function(req, res)
 {
 
-  // is the username and password OK?
+  //  is the username and password OK?
+  let results = await UsersModel.searchUsers(req.body.username, req.body.password);
+  console.log(results);
   if (req.body.username == "bob" &&
+    
       req.body.password == "test")
   {
+ 
     // set a session key username to login the user
     req.session.username = req.body.username;
 
