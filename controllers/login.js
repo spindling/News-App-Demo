@@ -18,12 +18,10 @@ router.get("/", async function(req, res)
 router.post("/attemptlogin", async function(req, res)
 {
 
-  //  is the username and password OK?
+  //  is the username and password present in the database?
   let results = await UsersModel.searchUsers(req.body.username, req.body.password);
-  console.log(results);
-  if (req.body.username == "bob" &&
-    
-      req.body.password == "test")
+
+  if (results != "")
   {
  
     // set a session key username to login the user
