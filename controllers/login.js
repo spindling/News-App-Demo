@@ -20,15 +20,21 @@ router.post("/attemptlogin", async function(req, res)
 
   //  is the username and password present in the database?
   let results = await UsersModel.searchUsers(req.body.username, req.body.password);
-
+  console.log(results);
   if (results != "")
   {
  
     // set a session key username to login the user
-    req.session.username = req.body.username;
-
-    // re-direct the logged-in user to the members page
-    res.redirect("/members");
+    //req.session.username = results.username;
+    //req.session.level = results.level;
+    console.log(results.username);
+    //// re-direct the logged-in user to the members page
+    //if (req.session.level == "member"){
+    //  res.redirect("/members");
+    //}
+    //else if (req.session.level == "editor"){
+    //  res.redirect("/editors");
+    //}
   }
   else
   {
