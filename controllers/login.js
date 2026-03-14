@@ -1,6 +1,7 @@
 const express = require('express');
 var router = express.Router()
 const UsersModel = require('../models/users.js')
+const bcrypt = require('bcrypt');
 
 // Displays the login page
 router.get("/", async function(req, res)
@@ -19,7 +20,7 @@ router.post("/attemptlogin", async function(req, res)
 {
 
   //  is the username and password present in the database?
-  let results = await UsersModel.searchUsers(req.body.username, req.body.password);
+  let results = await UsersModel.searchUsers(req.body.username);
   console.log(results[0]);
   if (results != "")
   {
