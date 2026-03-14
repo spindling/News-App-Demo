@@ -1,15 +1,24 @@
 const sqlite3 = require("sqlite3").verbose();
 var db = new sqlite3.Database("database.db");
+const bcrypt = require('bcrypt');
+
+
 
 db.serialize(function(){
+
+  //hash and salt initial passwords
+  const mem1 = bcrypt.hashSync('mem1', 10);
+  const mem2 = bcrypt.hashSync('mem2', 10);
+  const edit1 = bcrypt.hashSync('edit1', 10);
+  const edit2 = bcrypt.hashSync('edit2', 10);
 
   // Create an initial table of users
   db.run("DROP TABLE IF EXISTS Users");
   db.run("CREATE TABLE Users (username TEXT, password TEXT, level TEXT)");
-  db.run("INSERT INTO Users VALUES (?,?,?)", ['mem1', 'mem1', 'member']);
-  db.run("INSERT INTO Users VALUES (?,?,?)", ['mem2', 'mem2', 'editor']);
-  db.run("INSERT INTO Users VALUES (?,?,?)", ['edit1', 'edit1', 'editor']);
-  db.run("INSERT INTO Users VALUES (?,?,?)", ['edit2', 'edit2', 'editor']);
+  db.run("INSERT INTO Users VALUES (?,?,?)", ['mem1', mem1, 'member']);
+  db.run("INSERT INTO Users VALUES (?,?,?)", ['mem2', mem2, 'editor']);
+  db.run("INSERT INTO Users VALUES (?,?,?)", ['edit1', edit1, 'editor']);
+  db.run("INSERT INTO Users VALUES (?,?,?)", ['edit2', edit2, 'editor']);
 
   // create an initial table of articles
   db.run("DROP TABLE IF EXISTS Articles");
