@@ -100,6 +100,7 @@ app.use("/articles", require("./controllers/articles"));
 app.use("/members", require("./controllers/members"));
 app.use("/editors", require("./controllers/editors"));
 app.use("/login", require("./controllers/login"));
+app.use("/signup", require("./controllers/signup"));
 
 // - We route / to redirect to /home by default
 app.get("/", function(req, res) {
