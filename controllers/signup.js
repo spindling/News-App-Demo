@@ -14,4 +14,15 @@ router.get("/", async function(req, res)
   res.render("signup", req.TPL);
 });
 
+
+router.post("/attemptsignup", async function(req, res)
+{
+    //validation
+    if (req.body.username.length < 6 || req.body.password.length < 6)
+    {
+        console.log("Too short!");
+    }
+
+});
+
 module.exports = router;
