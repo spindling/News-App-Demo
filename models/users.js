@@ -17,7 +17,7 @@ init();
 //Search database for matching user credentials
 async function searchUsers(username) {
     
-     let results = await db.all("SELECT * FROM Users WHERE username = ? AND password = ? ", [username, password]);
+     let results = await db.all("SELECT * FROM Users WHERE username = ?", [username]);
      return results;
 }
 
