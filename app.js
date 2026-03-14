@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const session = require('express-session');
 const mustacheExpress = require('mustache-express');
+const fs = require("fs");
 
 // Include the mustache engine to help us render our pages
 app.engine("mustache", mustacheExpress());
@@ -29,6 +30,17 @@ app.use(function(req,res,next) {
 
   next();
 });
+
+//Logging functionality
+function myLogger(req,res,next)
+{
+  logMessage = new Date() + "," + req.path + "," + req.ip + "," + JSON.stringify(req.query) + "," + JSON.stringify(req.body) + "\n";
+  fs.appendFile('log.txt', logMessage, () => {next()});
+
+  //next();
+}
+
+app.use( myLogger);
 
 // Create middlewares for setting up navigational highlighting
 // - we could condense this significantly, for example by having one middleware
@@ -98,6 +110,10 @@ app.get("/", function(req, res) {
 app.get(/^(.+)$/, function(req,res) {
   res.sendFile(__dirname + req.params[0]);
 });
+
+
+
+
 
 // Start the server
 var server = app.listen(8081, function() {console.log("Server listening...");})
