@@ -17,7 +17,7 @@ init();
 // Return all of the articles
 async function getAllArticles()
 {
-  let results = await db.all("SELECT * FROM Articles");
+  let results = await db.all("SELECT rowid, * FROM Articles");
   return results;
 }
 
@@ -28,5 +28,11 @@ async function createArticle(article,username)
          [article.title, username, article.content]);
 }
 
-module.exports = {getAllArticles
-                 ,createArticle};
+async function deleteArticle(id)
+{
+  await db.run("DELETE FROM Articles WHERE rowid=?",[id]);
+}
+//async function deleteArticle()
+module.exports = {getAllArticles, 
+                  createArticle,
+                 deleteArticle};

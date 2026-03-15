@@ -17,7 +17,7 @@ router.get("/", async function(req, res)
 
 router.get("/delete/:id", async function(req, res)
 {
-    //await ArticlesModel.deleteArticle(req.params.id);
+    await ArticlesModel.deleteArticle(req.params.id);
     res.redirect("/editors");
 });
 
