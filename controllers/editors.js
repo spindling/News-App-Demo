@@ -8,19 +8,5 @@ router.get("/", async function(req, res)
 
 });
 
-function editorAccess(req,res,next)
-{
-    //Restrict access to editor's page
-  if (req.session.level == "editor")
-  {
-    next();
-  }
-  else
-  {
-    res.redirect("/home");
-  }
 
-}
-
-router.use(editorAccess);
 module.exports = router;
