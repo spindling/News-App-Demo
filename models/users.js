@@ -16,9 +16,15 @@ init();
 
 //Search database for matching user credentials
 async function searchUsers(username) {
-    
-     let results = await db.all("SELECT * FROM Users WHERE username = ?", [username]);
-     return results;
+
+  let results = await db.all("SELECT * FROM Users WHERE username = ?", [username]);
+  return results;
+}
+
+async function addUser(username, password){
+
+  await db.all("INSERT INTO Users VALUES (?,?,member",[username, password]);
+  
 }
 
 module.exports = {searchUsers};

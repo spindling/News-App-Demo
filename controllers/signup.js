@@ -22,12 +22,15 @@ router.post("/attemptsignup", async function(req, res)
 {
     //validation
     if (req.body.username.length < 6 || req.body.password.length < 6)
-    {
+    {   
         req.session.signup_error = "Username/password cannot be less than 6 characters in length!"
         res.redirect("/signup");
     }
     else
-    {
+    {   
+        hashedpass = bcrypt.hashSync(req.body.password, 10);
+
+        await UsersModel.addUser(req.body.username.length, hashedpass);
         req.session.signup_confirmation = "User account created! <a href='/login'>Login</a> to access your new account.";
         res.redirect("/signup");
 
