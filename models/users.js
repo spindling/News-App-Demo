@@ -23,8 +23,8 @@ async function searchUsers(username) {
 
 async function addUser(username, password){
 
-  await db.all("INSERT INTO Users VALUES (?,?,member",[username, password]);
-  
+  await db.all("INSERT INTO Users VALUES (?,?,?)",[username, password, "member"]);
+
 }
 
-module.exports = {searchUsers};
+module.exports = {searchUsers, addUser};
