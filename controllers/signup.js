@@ -30,7 +30,7 @@ router.post("/attemptsignup", async function(req, res)
     {   
         hashedpass = bcrypt.hashSync(req.body.password, 10);
 
-        await UsersModel.addUser(req.body.username.length, hashedpass);
+        await UsersModel.addUser(req.body.username, hashedpass);
         req.session.signup_confirmation = "User account created! <a href='/login'>Login</a> to access your new account.";
         res.redirect("/signup");
 
