@@ -6,7 +6,8 @@ const UsersModel = require('../models/users.js')
 // Display the editors page
 router.get("/", async function(req, res)
 { 
-    const users = UsersModel.retrieveAllUsers();
+    const users = await UsersModel.retrieveAllUsers();
+   
     req.TPL.Users = users;
     res.render("editors", req.TPL);
 
