@@ -31,7 +31,6 @@ router.post("/attemptlogin", async function(req, res)
       // set a session key username to login the user
       req.session.username = results[0].username;
       req.session.level = results[0].level;
-      console.log(results[0].username);
       //// re-direct the logged-in user to the members page
       if (req.session.level == "member") {
         res.redirect("/members");
