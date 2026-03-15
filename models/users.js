@@ -27,4 +27,10 @@ async function addUser(username, password){
 
 }
 
-module.exports = {searchUsers, addUser};
+async function retrieveAllUsers(){
+
+  let results = await db.all("SELECT * FROM Users");
+  return results
+}
+
+module.exports = {searchUsers, addUser, retrieveAllUsers};
