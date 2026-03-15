@@ -7,7 +7,7 @@
     <div class="card">
       <h2>Sign-up for an account</h2>
       <p style="color:red;">{{ signup_error }}</p> 
-      <p>{{ signup_confirmation }}</p>
+      <p>{{{ signup_confirmation }}}</p>
       <form action="/signup/attemptsignup" method="post">
         <label for="username">Username:</label>
         <input type="text" name="username"> <br /> <br />

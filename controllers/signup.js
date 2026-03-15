@@ -28,7 +28,7 @@ router.post("/attemptsignup", async function(req, res)
     }
     else
     {
-        req.session.signup_confirmation = "User account created! <a href=\"/login\">Login</a> to access your new account.";
+        req.session.signup_confirmation = "User account created! <a href='/login'>Login</a> to access your new account.";
         res.redirect("/signup");
 
     }
